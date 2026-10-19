@@ -1,0 +1,34 @@
+<?php require_once 'config.php'; ?>
+<?php require_once 'functions.php'; ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	<?php $getClientByID = getClientByID($pdo, $_GET['client_id']); ?>
+	<h1>Are you sure you want to delete this client account?</h1>
+	<div class="container" style="border-style: solid; height: 400px;">
+		<h2>First Name: <?php echo $getClientByID['first_name'] ?></h2>
+    <h2>Last Name: <?php echo $getClientByID['last_name'] ?></h2>
+    <h2>Email: <?php echo $getClientByID['email_address'] ?></h2>
+    <h2>Contact Number: <?php echo $getClientByID['contact_number'] ?></h2>
+    <h2>Home Address: <?php echo $getClientByID['home_address'] ?></h2>
+    <h2>System Concern: <?php echo $getClientByID['system_concern'] ?></h2>
+
+		<div class="deleteBtn" style="float: right; margin-right: 10px;">
+
+			<form action="core/index.php?client_id=<?php echo $_GET['client_id']; ?>&programmer_id=<?php echo $_GET['programmer_id']; ?>" method="POST">
+				<input type="submit" name="deleteProjectBtn" value="Delete">
+			</form>			
+			
+		</div>	
+
+	</div>
+</body>
+</html>
