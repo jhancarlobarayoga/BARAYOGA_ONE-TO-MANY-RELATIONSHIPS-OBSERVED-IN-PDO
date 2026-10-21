@@ -1,9 +1,10 @@
--- DATABASE: PROGRAMMER AND CLIENT MANAGEMENT SYSTEM
--- Relationship: One programmer can have many clients.
-
+-- Programmer and Client Database Management System
 CREATE DATABASE IF NOT EXISTS programmer_client_activity;
+
+-- Using the specified database to insert tables
 USE programmer_client_activity;
 
+-- Parent Entity: Programmer Table
 CREATE TABLE IF NOT EXISTS programmer (
     programmer_id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50),
@@ -14,6 +15,7 @@ CREATE TABLE IF NOT EXISTS programmer (
     date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Child Entity: Client Table
 CREATE TABLE IF NOT EXISTS client (
     client_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(60),
@@ -25,6 +27,8 @@ CREATE TABLE IF NOT EXISTS client (
     project_details TEXT,
     programmer_id INT NOT NULL,
     date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    -- Foreign key usage of Child Entity to reference/link to Parent Entity
     FOREIGN KEY (programmer_id) REFERENCES programmer(programmer_id)
         ON UPDATE CASCADE
         ON DELETE RESTRICT
